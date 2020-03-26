@@ -17,6 +17,9 @@
     "to-do-e2e": {
       "tags": [],
       "implicitDependencies": ["to-do"]
+    },
+    "todos": {
+      "tags": []
     }
   }
 }
