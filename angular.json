@@ -22,8 +22,14 @@
             "tsConfig": "apps/to-do/tsconfig.app.json",
             "aot": true,
             "assets": ["apps/to-do/src/favicon.ico", "apps/to-do/src/assets"],
-            "styles": ["apps/to-do/src/styles.scss"],
-            "scripts": []
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "apps/to-do/src/styles.scss"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
