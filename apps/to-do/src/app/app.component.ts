@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { TodosEntity, AddToDo, reducer } from '@myworkspace/todos';
+import { Observable } from 'rxjs';
+// '../+state/talks.reducer';
 
 @Component({
   selector: 'myworkspace-root',
@@ -6,5 +10,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'to-do';
+  todos$: Observable<TodosEntity[]>;
+
+  constructor(private store: Store<{ todos: TodosEntity[] }>) {
+
+    store.select('todos').subscribe(data => {
+      console.log(data);
+    });
+
+    this.todos$ = this.store.pipe(select("todos"));
+
+    this.todos$.subscribe((data)=>console.log(data));
+
+    this.store.dispatch(
+      AddToDo({ todo: { id: 99, title: "title", done: false } })
+    ); 
+  }
 }

@@ -7,6 +7,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
+import { TODOS_FEATURE_KEY, reducer } from '@myworkspace/todos';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -22,6 +24,7 @@ import { environment } from '../environments/environment';
       }
     ),
     EffectsModule.forRoot([]),
+    StoreModule.forFeature(TODOS_FEATURE_KEY, reducer),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [],
