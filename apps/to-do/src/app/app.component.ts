@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { TodosEntity, AddToDo } from '@myworkspace/todos';
+import { TodosEntity, AddToDo, reducer } from '@myworkspace/todos';
 import { Observable } from 'rxjs';
+// '../+state/talks.reducer';
 
 @Component({
   selector: 'myworkspace-root',
