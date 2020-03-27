@@ -16,7 +16,7 @@ export const loadTodosFailure = createAction(
 
 export const AddToDo = createAction(
   '[Todos] AddToDo',
-  props<{ todo: TodosEntity }>()
+  props<{ todoTitle: string }>()
 );
 
 export const EditToDo = createAction(
@@ -26,12 +26,12 @@ export const EditToDo = createAction(
 
 export const RemoveToDo = createAction(
   '[Todos] RemoveToDo',
-  props<{ todo: number }>()
+  props<{ id: number }>()
 );
 
 export const DoneToDo = createAction(
   '[Todos] DoneToDo',
-  props<{ todo: TodosEntity }>()
+  props<{ id: number }>()
 );
 
 // export class AddToDo implements Action {

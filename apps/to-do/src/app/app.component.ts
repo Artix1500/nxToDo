@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { TodosEntity, AddToDo, reducer } from '@myworkspace/todos';
+import { TodosEntity, AddToDo, RemoveToDo, DoneToDo, EditToDo } from '@myworkspace/todos';
 import { Observable } from 'rxjs';
-// '../+state/talks.reducer';
 
 @Component({
   selector: 'myworkspace-root',
@@ -10,20 +9,43 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  todos$: Observable<TodosEntity[]>;
+  todos = {}
 
-  constructor(private store: Store<{ todos: TodosEntity[] }>) {
-
+  constructor(private store: Store<{ todos: {[id: string]: TodosEntity} }>) {
     store.select('todos').subscribe(data => {
-      console.log(data);
+      this.todos= data.todos;
     });
 
-    this.todos$ = this.store.pipe(select("todos"));
-
-    this.todos$.subscribe((data)=>console.log(data));
-
     this.store.dispatch(
-      AddToDo({ todo: { id: 99, title: "title", done: false } })
-    ); 
+      AddToDo({ todoTitle: "title1" })
+    );
+    this.store.dispatch(
+      AddToDo({ todoTitle: "title2" })
+    );
+    this.store.dispatch(
+      AddToDo({ todoTitle: "title3" })
+    );
+    this.store.dispatch(
+      AddToDo({ todoTitle: "title4" })
+    );
+  }
+
+  onRemoveToDo(id) {
+    this.store.dispatch(
+      RemoveToDo({ id: id })
+    );
+  }
+
+  onDoneToDo(id) {
+    this.store.dispatch(
+      DoneToDo({ id: id })
+    );
+  }
+
+  onEditToDo(todo) {
+    todo = {...todo, title: todo.title + "NEW"};
+    this.store.dispatch(
+      EditToDo({ todo: todo })
+    );
   }
 }

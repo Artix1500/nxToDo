@@ -3,10 +3,12 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 import * as TodosActions from './todos.actions';
 import { TodosEntity } from './todos.models';
+import { v4 as uuidv4 } from 'uuid';
 
 export const TODOS_FEATURE_KEY = 'todos';
 
 export interface State extends EntityState<TodosEntity> {
+  todos: {[id: string]: TodosEntity};
   selectedId?: string | number; // which Todos record has been selected
   loaded: boolean; // has the Todos list been loaded
   error?: string | null; // last none error (if any)
@@ -22,9 +24,7 @@ export const todosAdapter: EntityAdapter<TodosEntity> = createEntityAdapter<
 
 export const initialState: State = todosAdapter.getInitialState({
   // set initial required properties
-  todos: [
-    { id: 0, title: "OLD TITLE", done: false }
-  ],
+  todos: {},
   loaded: false
 });
 
@@ -39,11 +39,47 @@ const todosReducer = createReducer(
     todosAdapter.addAll(todos, { ...state, loaded: true })
   ),
   on(TodosActions.loadTodosFailure, (state, { error }) => ({ ...state, error })),
-  on(TodosActions.AddToDo, (state, { todo }) => {
-    console.log(todo);
-    console.log("TEST")
-    return {...state};
-  })
+  on(TodosActions.AddToDo, (state, { todoTitle }) => {
+    let id: string = uuidv4();
+    let todo: TodosEntity = {
+      id: id,
+      title: todoTitle,
+      done: false,
+    };
+    
+    let newTodos: {[id: string]: TodosEntity} = {...state.todos};
+    newTodos[id] = todo;
+    return {
+      ...state, 
+      todos: newTodos
+    };
+  }),
+  on(TodosActions.EditToDo, (state, { todo }) => { 
+    let newTodos: {[id: string]: TodosEntity} = {...state.todos};
+    newTodos[todo.id] = todo;
+    return {
+      ...state, 
+      todos: newTodos
+    };
+  }),
+  on(TodosActions.RemoveToDo, (state, { id }) => {
+    let newTodos: {[id: string]: TodosEntity} = {...state.todos};
+    delete newTodos[id];
+    return {
+      ...state, 
+      todos: newTodos
+    };
+  }),
+  on(TodosActions.DoneToDo, (state, { id }) => {
+    let newTodos: {[id: string]: TodosEntity} = {...state.todos};
+    newTodos[id] = {
+      ...newTodos[id], 
+      done: !newTodos[id].done};
+    return {
+      ...state, 
+      todos: newTodos
+    };
+  }),
 );
 
 export function reducer(state: State | undefined, action: Action) {

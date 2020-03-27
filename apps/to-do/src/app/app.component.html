@@ -8,8 +8,18 @@
 
 <div class="jumbotron">
   <h1>Angular Bootstrap Demo</h1>
-  <p class="lead">
+  <!-- <p class="lead">
     {{this.todos$ | async}}
-  </p> 
+  </p>  -->
+  <ul>
+    <li>id: title</li>
+    <li *ngFor="let todo of todos | keyvalue" >
+      <!-- {{todo.value.id}}: {{todo.value.title}}  -->
+      {{ todo.value.title }} - Done: {{ todo.value.done ? "YES": "NO" }}
+      <button (click)="onRemoveToDo(todo.value.id)">Remove</button>
+      <button (click)="onEditToDo(todo.value)">Edit</button>
+      <button (click)="onDoneToDo(todo.value.id)">Done</button>
+    </li>
+  </ul>
 
 </div>
