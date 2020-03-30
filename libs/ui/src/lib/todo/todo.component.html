@@ -1,4 +1,18 @@
-{{ todo.title }} - Done: {{ todo.done ? "YES": "NO" }}
-<button (click)="onRemoveToDo(todo.id)">Remove</button>
-<button (click)="onEditToDo(todo)">Edit</button>
-<button (click)="onDoneToDo(todo.id)">Done</button>
+<div class="todo">
+
+    <div *ngIf="!edit">
+        <input type="checkbox" aria-label="Checkbox for todo" (click)="onDoneToDo(todo.id)" [checked]="todo.done">
+        {{ todo.title }}
+    </div>
+    <div class="todo__buttons" *ngIf="!edit">
+        <button (click)="onRemoveToDo(todo.id)">Remove</button>
+        <button (click)="handleEdit()">Edit</button>
+    </div>
+
+    <form *ngIf="edit" class="todo__form">
+         <div class="form-group">
+             <input type="text" class="form-control" [value]="todo.title" #name>
+             <button class="btn btn-primary" (click)="onEditToDo(todo, name.value)">Save</button>
+         </div>
+    </form>
+</div>

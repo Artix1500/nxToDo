@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TodosEntity, RemoveToDo, DoneToDo, EditToDo } from '@myworkspace/todos';
 
+
 @Component({
   selector: 'myworkspace-todo',
   templateUrl: './todo.component.html',
@@ -9,6 +10,8 @@ import { TodosEntity, RemoveToDo, DoneToDo, EditToDo } from '@myworkspace/todos'
 })
 export class TodoComponent implements OnInit {
   @Input() todo: TodosEntity;
+  
+  edit = false;
 
   constructor(private store: Store<{ todos: {[id: string]: TodosEntity} }>) { }
 
@@ -27,11 +30,16 @@ export class TodoComponent implements OnInit {
     );
   }
 
-  onEditToDo(todo) {
-    todo = {...todo, title: todo.title + "NEW"};
+  onEditToDo(todo, title) {
+    todo = {...todo, title: title};
     this.store.dispatch(
       EditToDo({ todo: todo })
     );
+    this.edit = false;
+  }
+
+  handleEdit() {
+    this.edit = true;
   }
 
 }

@@ -1,0 +1,20 @@
+.todo {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content:  space-between;
+}
+
+.todo__buttons {
+    display: inline-block; 
+}
+
+.todo__form {
+    display: flex;
+    justify-content: flex-start;
+}
+.todo__form .form-group{
+    display: flex; 
+}
+ 
+
