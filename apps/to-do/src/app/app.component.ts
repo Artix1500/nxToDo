@@ -14,39 +14,8 @@ export class AppComponent {
 
   constructor(private store: Store<{ todos: {[id: string]: TodosEntity} }>) {
     store.select('todos').subscribe(data => {
-      this.todos= data.todos;
+      this.todos = data.todos;
     });
-
-    this.store.dispatch(
-      AddToDo({ todoTitle: "title1" })
-    );
-    this.store.dispatch(
-      AddToDo({ todoTitle: "title2" })
-    );
-    this.store.dispatch(
-      AddToDo({ todoTitle: "title3" })
-    );
-    this.store.dispatch(
-      AddToDo({ todoTitle: "title4" })
-    );
   }
 
-  onRemoveToDo(id) {
-    this.store.dispatch(
-      RemoveToDo({ id: id })
-    );
-  }
-
-  onDoneToDo(id) {
-    this.store.dispatch(
-      DoneToDo({ id: id })
-    );
-  }
-
-  onEditToDo(todo) {
-    todo = {...todo, title: todo.title + "NEW"};
-    this.store.dispatch(
-      EditToDo({ todo: todo })
-    );
-  }
 }

@@ -1,26 +1,12 @@
-<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
-  <a class="navbar-brand" href="#">Angular Bootstrap Demo</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button> 
-</nav>
+<myworkspace-header></myworkspace-header>
+
+<myworkspace-todo-form></myworkspace-todo-form>
 
 <div class="jumbotron">
   <h1>Angular Bootstrap Demo</h1>
   <!-- <p class="lead">
     {{this.todos$ | async}}
   </p>  -->
-  <ul>
-    <li>id: title</li>
-    <li *ngFor="let todo of todos | keyvalue" >
-      <!-- {{todo.value.id}}: {{todo.value.title}}  -->
-      {{ todo.value.title }} - Done: {{ todo.value.done ? "YES": "NO" }}
-      <button (click)="onRemoveToDo(todo.value.id)">Remove</button>
-      <button (click)="onEditToDo(todo.value)">Edit</button>
-      <button (click)="onDoneToDo(todo.value.id)">Done</button>
-    </li>
-  </ul>
 
 
   <myworkspace-todos [todos]="todos"></myworkspace-todos>

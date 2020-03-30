@@ -1,4 +1,5 @@
-<p>todos works!</p>
 <ul>
-    <li *ngFor="let t of todos | keyvalue">{{ t.value.title }}</li>
+    <li *ngFor="let todo of todos | keyvalue">
+        <myworkspace-todo [todo]="todo.value"></myworkspace-todo>
+    </li>
 </ul>

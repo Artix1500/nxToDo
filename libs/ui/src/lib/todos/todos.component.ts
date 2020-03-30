@@ -12,7 +12,5 @@ export class TodosComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.todos);
   }
-
 }

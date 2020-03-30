@@ -1,0 +1,4 @@
+{{ todo.title }} - Done: {{ todo.done ? "YES": "NO" }}
+<button (click)="onRemoveToDo(todo.id)">Remove</button>
+<button (click)="onEditToDo(todo)">Edit</button>
+<button (click)="onDoneToDo(todo.id)">Done</button>
