@@ -1,5 +1,11 @@
-<h2>Add new todo</h2>
-<div>
-    <input type="text" placeholder="name" #name>
-    <button (click)="addToDo(name.value)">Add a Todo</button>
+<div class="container">
+    <h2>Add new todo</h2>
+    <form>
+        <div class="form-group">
+          <label for="AddTodo">Add todo</label>
+          <input type="text" class="form-control" placeholder="Buy milk" #name>
+          <small id="AddTodohelper" class="form-text text-muted">Just name your task. It is so simple!</small>
+        </div>
+        <button class="btn btn-primary" (click)="addToDo(name.value)">Add todo</button>
+    </form>
 </div>

@@ -1,5 +1,15 @@
-<ul>
-    <li *ngFor="let todo of todos | keyvalue">
-        <myworkspace-todo [todo]="todo.value"></myworkspace-todo>
-    </li>
-</ul>
+<div class="jumbotron jumbotron-not-done">
+    <h3 class="jumbotron__title">To do:</h3>
+    <ul class="jumbotron__todos">
+        <li *ngFor="let todo of todosDone">
+            <myworkspace-todo [todo]="todo"></myworkspace-todo>
+        </li>
+    </ul>
+</div><div class="jumbotron jumbotron-done">
+    <h3 class="jumbotron__title">Done:</h3>
+    <ul class="jumbotron__todos">
+        <li *ngFor="let todo of todosNotDone">
+            <myworkspace-todo [todo]="todo"></myworkspace-todo>
+        </li>
+    </ul>
+</div>
