@@ -7,6 +7,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const TODOS_FEATURE_KEY = 'todos';
 
+// the key for the local storage.
+const LOCALSTORAGEKEY = '__app_todo_storage__';
+
 export interface State extends EntityState<TodosEntity> {
   todos: {[id: string]: TodosEntity};
   selectedId?: string | number; // which Todos record has been selected
@@ -24,7 +27,7 @@ export const todosAdapter: EntityAdapter<TodosEntity> = createEntityAdapter<
 
 export const initialState: State = todosAdapter.getInitialState({
   // set initial required properties
-  todos: {},
+  todos: JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)),
   loaded: false
 });
 
@@ -36,45 +39,58 @@ const todosReducer = createReducer(
     error: null
   })),
   on(TodosActions.loadTodosSuccess, (state, { todos }) =>
-    todosAdapter.addAll(todos, { ...state, loaded: true })
+    todosAdapter.setAll(todos, { ...state, loaded: true })
   ),
   on(TodosActions.loadTodosFailure, (state, { error }) => ({ ...state, error })),
   on(TodosActions.AddToDo, (state, { todoTitle }) => {
-    let id: string = uuidv4();
-    let todo: TodosEntity = {
+    const id: string = uuidv4();
+    const todo: TodosEntity = {
       id: id,
       title: todoTitle,
       done: false,
     };
     
-    let newTodos: {[id: string]: TodosEntity} = {...state.todos};
+    const newTodos: {[id: string]: TodosEntity} = {...state.todos};
     newTodos[id] = todo;
+
+    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
+
     return {
       ...state, 
       todos: newTodos
     };
   }),
   on(TodosActions.EditToDo, (state, { todo }) => { 
-    let newTodos: {[id: string]: TodosEntity} = {...state.todos};
+    const newTodos: {[id: string]: TodosEntity} = {...state.todos};
     newTodos[todo.id] = todo;
+
+    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
+
     return {
       ...state, 
       todos: newTodos
     };
   }),
   on(TodosActions.RemoveToDo, (state, { id }) => {
-    let newTodos: {[id: string]: TodosEntity} = {...state.todos};
+    const newTodos: {[id: string]: TodosEntity} = {...state.todos};
     delete newTodos[id];
+
+    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
+
     return {
       ...state, 
       todos: newTodos
     };
   }),
   on(TodosActions.DoneToDo, (state, { id }) => {
-    let newTodos: {[id: string]: TodosEntity} = {...state.todos};
+    const newTodos: {[id: string]: TodosEntity} = {...state.todos};
     newTodos[id] = {
       ...newTodos[id], 
-      done: !newTodos[id].done};
+      done: !newTodos[id].done
+    };
+
+    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
+
     return {
       ...state, 
       todos: newTodos
