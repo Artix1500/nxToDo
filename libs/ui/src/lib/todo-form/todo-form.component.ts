@@ -5,7 +5,8 @@ import { TodosEntity, AddToDo } from '@myworkspace/todos';
 @Component({
   selector: 'myworkspace-todo-form',
   templateUrl: './todo-form.component.html',
-  styleUrls: ['./todo-form.component.scss']
+  styleUrls: ['./todo-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoFormComponent implements OnInit {
  

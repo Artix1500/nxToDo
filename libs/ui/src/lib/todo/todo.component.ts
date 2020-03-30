@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { TodosEntity, RemoveToDo, DoneToDo, EditToDo } from '@myworkspace/todos';
 
@@ -6,7 +6,8 @@ import { TodosEntity, RemoveToDo, DoneToDo, EditToDo } from '@myworkspace/todos'
 @Component({
   selector: 'myworkspace-todo',
   templateUrl: './todo.component.html',
-  styleUrls: ['./todo.component.scss']
+  styleUrls: ['./todo.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoComponent implements OnInit {
   @Input() todo: TodosEntity;

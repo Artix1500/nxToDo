@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy} from '@angular/core';
 import { TodosEntity } from '@myworkspace/todos';
 
 @Component({
   selector: 'myworkspace-todos',
   templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.scss']
+  styleUrls: ['./todos.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodosComponent implements OnInit, OnChanges {
   @Input() todos: TodosEntity[];
