@@ -5,8 +5,19 @@
     justify-content:  space-between;
 }
 
+.todo__title{
+    margin-top: 6px;
+}
+
 .todo__buttons {
     display: inline-block; 
+}
+
+.todo__buttons {
+    display: inline-block; 
+    .btn {
+        margin: 0 0 0 10px;
+    }
 }
 
 .todo__form {
