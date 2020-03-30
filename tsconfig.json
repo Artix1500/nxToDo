@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@myworkspace/todos": ["libs/todos/src/index.ts"]
+      "@myworkspace/todos": ["libs/todos/src/index.ts"],
+      "@myworkspace/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
