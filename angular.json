@@ -190,6 +190,58 @@
           "style": "scss"
         }
       }
+    },
+    "todo-app-domain": {
+      "root": "libs/todo-app/domain",
+      "sourceRoot": "libs/todo-app/domain/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/todo-app/domain/tsconfig.lib.json",
+              "libs/todo-app/domain/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/todo-app/domain/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/todo-app/domain/jest.config.js",
+            "tsConfig": "libs/todo-app/domain/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "todo-app-shell": {
+      "root": "libs/todo-app/shell",
+      "sourceRoot": "libs/todo-app/shell/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/todo-app/shell/tsconfig.lib.json",
+              "libs/todo-app/shell/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/todo-app/shell/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/todo-app/shell/jest.config.js",
+            "tsConfig": "libs/todo-app/shell/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   },
   "cli": {

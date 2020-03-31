@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
 import { Store } from '@ngrx/store';
-import { TodosEntity, AddToDo } from '@myworkspace/todos';
+import { TodosEntity, AddToDo } from '@myworkspace/todo-app/data-access';
 
 @Component({
   selector: 'myworkspace-todo-form',

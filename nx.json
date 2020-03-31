@@ -23,6 +23,12 @@
     },
     "ui": {
       "tags": []
+    },
+    "todo-app-domain": {
+      "tags": []
+    },
+    "todo-app-shell": {
+      "tags": []
     }
   }
 }
