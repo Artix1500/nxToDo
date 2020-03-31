@@ -6,15 +6,14 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { UiModule } from '@myworkspace/todo-app/ui';
-
+import { TodoAppShellModule } from '@myworkspace/todo-app/shell';
 import { TODOS_FEATURE_KEY, reducer } from '@myworkspace/todo-app/data-access';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    UiModule,
+    TodoAppShellModule,
     StoreModule.forRoot(
       {},
       {

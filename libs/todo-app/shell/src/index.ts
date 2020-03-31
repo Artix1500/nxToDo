@@ -1,1 +1,1 @@
-export * from './lib/todo-app-shell';
+export * from './lib/todo-app-shell.module';
