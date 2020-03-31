@@ -21,8 +21,12 @@
             "polyfills": "apps/to-do/src/polyfills.ts",
             "tsConfig": "apps/to-do/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/to-do/src/favicon.ico", "apps/to-do/src/assets"],
+            "assets": [
+              "apps/to-do/src/favicon.ico",
+              "apps/to-do/src/assets"
+            ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "apps/to-do/src/styles.scss"
             ],
@@ -86,7 +90,10 @@
               "apps/to-do/tsconfig.app.json",
               "apps/to-do/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/to-do/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/to-do/**"
+            ]
           }
         },
         "test": {
@@ -121,8 +128,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/to-do-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/to-do-e2e/**"]
+            "tsConfig": [
+              "apps/to-do-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/to-do-e2e/**"
+            ]
           }
         }
       }
@@ -140,7 +152,10 @@
               "libs/todos/tsconfig.lib.json",
               "libs/todos/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/todos/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/todos/**"
+            ]
           }
         },
         "test": {
@@ -172,7 +187,10 @@
               "libs/ui/tsconfig.lib.json",
               "libs/ui/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/ui/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/ui/**"
+            ]
           }
         },
         "test": {
@@ -204,7 +222,10 @@
               "libs/todo-app/domain/tsconfig.lib.json",
               "libs/todo-app/domain/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/todo-app/domain/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/todo-app/domain/**"
+            ]
           }
         },
         "test": {
@@ -230,7 +251,10 @@
               "libs/todo-app/shell/tsconfig.lib.json",
               "libs/todo-app/shell/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/todo-app/shell/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/todo-app/shell/**"
+            ]
           }
         },
         "test": {

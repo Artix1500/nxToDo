@@ -1,17 +1,24 @@
 <div class="todo">
     <div *ngIf="!edit" class="todo__title">
-        <input type="checkbox" aria-label="Checkbox for todo" (click)="onDoneToDo.emit(todo.id)" [checked]="todo.done">
-        {{ todo.title }}
+        <mat-checkbox 
+        class="example-margin" 
+        (click)="onDoneToDo.emit(todo.id)"
+        [checked]="todo.done">
+            {{ todo.title }}
+        </mat-checkbox>
     </div>
     <div class="todo__buttons" *ngIf="!edit">
-        <button class="btn btn-light" (click)="onRemoveToDo.emit(todo.id)">Remove</button>
-        <button class="btn btn-light" (click)="startEdit()">Edit</button>
+        <button mat-raised-button (click)="onRemoveToDo.emit(todo.id)">Remove</button>
+        <button mat-raised-button (click)="startEdit()">Edit</button>
     </div>
 
-    <form *ngIf="edit" class="todo__form">
-         <div class="form-group">
-             <input type="text" class="form-control" [value]="todo.title" #title>
-             <button type="button" class="btn btn-primary" (click)="handleEdit(title.value)">Save</button>
-         </div>
-    </form>
+    <div *ngIf="edit" class="todo__form">
+        <mat-form-field class="example-full-width">
+            <mat-label>Add todo</mat-label>
+            <input matInput [value]="todo.title" #title (keyup.enter)="handleEdit(title.value)">
+        </mat-form-field>
+        <div class="form__button">
+            <button type="button" mat-raised-button color="primary" (click)="handleEdit(title.value)">Save</button>
+        </div>
+    </div> 
 </div>

@@ -8,6 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { TodoAppShellModule } from '@myworkspace/todo-app/shell';
 import { TODOS_FEATURE_KEY, reducer, ToDosFacade} from '@myworkspace/todo-app/data-access';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,8 @@ import { TODOS_FEATURE_KEY, reducer, ToDosFacade} from '@myworkspace/todo-app/da
     ),
     EffectsModule.forRoot([]),
     StoreModule.forFeature(TODOS_FEATURE_KEY, reducer),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    BrowserAnimationsModule
   ],
   providers: [
     ToDosFacade

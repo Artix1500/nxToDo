@@ -1,13 +1,14 @@
 <div class="jumbotron" [ngClass]=" done ? 'jumbotron-done' : 'jumbotron-not-done' ">
     <h3 class="jumbotron__title">{{title}}:</h3>
-    <ul class="jumbotron__todos">
-        <li *ngFor="let todo of todos">
-            <myworkspace-todo 
+    <mat-list class="jumbotron__todos">
+        <mat-list-item *ngFor="let todo of todos">
+            <myworkspace-todo matLine
             [todo]="todo" 
             (onDoneToDo)="handleOnDoneToDo($event)"
             (onRemoveToDo)="handleOnRemoveToDo($event)"
             (onEditToDo)="handleOnEditToDo($event)"
             ></myworkspace-todo>
-        </li>
-    </ul>
+        </mat-list-item>
+      </mat-list>
 </div>
+

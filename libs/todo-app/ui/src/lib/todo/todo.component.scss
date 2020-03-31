@@ -1,5 +1,5 @@
 .todo {
-    margin-top: 10px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content:  space-between;
@@ -15,7 +15,7 @@
 
 .todo__buttons {
     display: inline-block; 
-    .btn {
+    button {
         margin: 0 0 0 10px;
     }
 }
@@ -23,9 +23,13 @@
 .todo__form {
     display: flex;
     justify-content: flex-start;
-}
-.todo__form .form-group{
-    display: flex; 
+    width: 100%;
 }
  
+.form__button{
+    margin-top: 6px;
+}
 
+.example-full-width {
+    width: 100%;
+  }
