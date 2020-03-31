@@ -1,15 +1,13 @@
-<div class="jumbotron jumbotron-not-done">
-    <h3 class="jumbotron__title">To do:</h3>
+<div class="jumbotron" [ngClass]=" done ? 'jumbotron-done' : 'jumbotron-not-done' ">
+    <h3 class="jumbotron__title">{{title}}:</h3>
     <ul class="jumbotron__todos">
-        <li *ngFor="let todo of todosDone">
-            <myworkspace-todo [todo]="todo"></myworkspace-todo>
-        </li>
-    </ul>
-</div><div class="jumbotron jumbotron-done">
-    <h3 class="jumbotron__title">Done:</h3>
-    <ul class="jumbotron__todos">
-        <li *ngFor="let todo of todosNotDone">
-            <myworkspace-todo [todo]="todo"></myworkspace-todo>
+        <li *ngFor="let todo of todos">
+            <myworkspace-todo 
+            [todo]="todo" 
+            (onDoneToDo)="handleOnDoneToDo($event)"
+            (onRemoveToDo)="handleOnRemoveToDo($event)"
+            (onEditToDo)="handleOnEditToDo($event)"
+            ></myworkspace-todo>
         </li>
     </ul>
 </div>

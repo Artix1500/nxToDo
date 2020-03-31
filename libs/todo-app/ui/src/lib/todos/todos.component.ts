@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy} from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
 import { TodosEntity } from '@myworkspace/todo-app/domain';
 
 @Component({
@@ -7,36 +7,24 @@ import { TodosEntity } from '@myworkspace/todo-app/domain';
   styleUrls: ['./todos.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TodosComponent implements OnInit, OnChanges {
+export class TodosComponent {
   @Input() todos: TodosEntity[];
-  todosDone: TodosEntity[];
-  todosNotDone: TodosEntity[];
+  @Input() title: string;
+  @Input() done: boolean;
 
-  constructor() { }
+  @Output() onRemoveToDo = new EventEmitter<string>();
+  @Output() onDoneToDo = new EventEmitter<string>();
+  @Output() onEditToDo = new EventEmitter<{todo: TodosEntity, title: string}>();
 
-  ngOnInit(): void { }
+  handleOnRemoveToDo = (id) => {
+    this.onRemoveToDo.emit(id)
+  }
 
-  ngOnChanges(): void {
-    const doneIds: string[] = Object.keys(this.todos).filter(id => {
-      return this.todos[id].done;
-    })
+  handleOnDoneToDo = (id) => {
+    this.onDoneToDo.emit(id)
+  }
 
-    this.todosDone = Object.keys(this.todos)
-      .filter(key => !doneIds.includes(key))
-      .reduce((obj, key) => {
-        return [
-          ...obj,
-          this.todos[key]
-        ];
-      }, []);
-
-    this.todosNotDone = Object.keys(this.todos)
-      .filter(key => doneIds.includes(key))
-      .reduce((obj, key) => {
-        return [
-          ...obj,
-          this.todos[key]
-        ];
-      }, []);
+  handleOnEditToDo = ({todo, title}) => {
+    this.onEditToDo.emit({todo, title})
   }
 }

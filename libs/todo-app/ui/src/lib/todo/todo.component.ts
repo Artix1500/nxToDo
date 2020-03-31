@@ -1,6 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { RemoveToDo, DoneToDo, EditToDo } from '@myworkspace/todo-app/data-access';
+import { Component, Output, EventEmitter, Input, ChangeDetectionStrategy } from '@angular/core';
 import { TodosEntity } from '@myworkspace/todo-app/domain';
 
 @Component({
@@ -9,38 +7,20 @@ import { TodosEntity } from '@myworkspace/todo-app/domain';
   styleUrls: ['./todo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent {
   @Input() todo: TodosEntity;
-  
   edit = false;
 
-  constructor(private store: Store<{ todos: {[id: string]: TodosEntity} }>) { }
+  @Output() onRemoveToDo = new EventEmitter<string>();
+  @Output() onDoneToDo = new EventEmitter<string>();
+  @Output() onEditToDo = new EventEmitter<{todo: TodosEntity, title: string}>();
 
-  ngOnInit(): void {
-  }
-
-  onRemoveToDo(id) {
-    this.store.dispatch(
-      RemoveToDo({ id: id })
-    );
-  }
-
-  onDoneToDo(id) {
-    this.store.dispatch(
-      DoneToDo({ id: id })
-    );
-  }
-
-  onEditToDo(todo, title) {
-    todo = {...todo, title: title};
-    this.store.dispatch(
-      EditToDo({ todo: todo })
-    );
+  handleEdit(title) {
+    this.onEditToDo.emit({todo: this.todo, title})
     this.edit = false;
   }
-
-  handleEdit() {
+  
+  startEdit(){
     this.edit = true;
   }
-
 }

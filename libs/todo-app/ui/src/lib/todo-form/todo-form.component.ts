@@ -1,7 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy} from '@angular/core';
-import { Store } from '@ngrx/store';
-import { AddToDo } from '@myworkspace/todo-app/data-access';
-import { TodosEntity } from '@myworkspace/todo-app/domain';
+import { Component, ChangeDetectionStrategy, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'myworkspace-todo-form',
@@ -9,17 +6,7 @@ import { TodosEntity } from '@myworkspace/todo-app/domain';
   styleUrls: ['./todo-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TodoFormComponent implements OnInit {
- 
-  constructor(private store: Store<{ todos: {[id: string]: TodosEntity} }>) { }
 
-  addToDo(title) {
-    this.store.dispatch(
-      AddToDo({ todoTitle: title })
-    )
-  }
-  
-  ngOnInit(): void {
-  }
-
+export class TodoFormComponent{
+  @Output() addToDo = new EventEmitter<string>();
 }
