@@ -16,9 +16,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@myworkspace/todos": ["libs/todos/src/index.ts"],
-      "@myworkspace/ui": ["libs/ui/src/index.ts"]
+      "@myworkspace/todo-app/data-access": [
+        "libs/todo-app/data-access/src/index.ts"
+      ],
+      "@myworkspace/todo-app/ui": ["libs/todo-app/ui/src/index.ts"],
+      "@myworkspace/todo-app/domain": ["libs/todo-app/domain/src/index.ts"],
+      "@myworkspace/todo-app/shell": ["libs/todo-app/shell/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
 }
