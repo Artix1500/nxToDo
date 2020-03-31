@@ -4,12 +4,16 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import * as fromTodos from './+state/todos/todos.reducer';
 import { TodosEffects } from './+state/todos/todos.effects';
+import { ToDosFacade } from './+state/todos/todos.facade';
 
 @NgModule({
   imports: [
     CommonModule,
     StoreModule.forFeature(fromTodos.TODOS_FEATURE_KEY, fromTodos.reducer),
     EffectsModule.forFeature([TodosEffects])
+  ],
+  providers: [
+    ToDosFacade
   ]
 })
 export class TodosModule {}

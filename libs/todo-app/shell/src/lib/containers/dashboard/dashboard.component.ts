@@ -1,9 +1,6 @@
-import { Component, OnChanges, ChangeDetectionStrategy } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { AddToDo, RemoveToDo, DoneToDo, EditToDo } from '@myworkspace/todo-app/data-access';
+import { Component, OnInit, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { TodosEntity } from '@myworkspace/todo-app/domain';
-import { Observable } from 'rxjs';
-
+import { ToDosFacade } from '@myworkspace/todo-app/data-access';
 
 @Component({
   selector: 'dashboard',
@@ -11,42 +8,34 @@ import { Observable } from 'rxjs';
   styleUrls: ['./dashboard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DashboardComponent implements OnChanges{
+export class DashboardComponent implements OnChanges, OnInit{
   todos = {}
   todosDone: TodosEntity[];
   todosNotDone: TodosEntity[];
 
+  constructor(private toDosFacade: ToDosFacade) { }
 
-  constructor(private store: Store<{ todos: {[id: string]: TodosEntity} }>) {
-    store.select('todos').subscribe(data => {
+  ngOnInit(): void {
+    this.toDosFacade.getToDos().subscribe(data => {
       this.todos = data.todos;
       this.sortToDos();
     });
   }
 
-  addToDo(title) {
-    this.store.dispatch(
-      AddToDo({ todoTitle: title })
-    )
+  addToDo(title) { 
+    this.toDosFacade.addToDo(title);
   }
 
-  onRemoveToDo(id) {
-    this.store.dispatch(
-      RemoveToDo({ id: id })
-    );
+  onRemoveToDo(id) { 
+    this.toDosFacade.onRemoveToDo(id);
   }
 
-  onDoneToDo(id) {
-    this.store.dispatch(
-      DoneToDo({ id: id })
-    );
+  onDoneToDo(id) { 
+    this.toDosFacade.onDoneToDo(id);
   }
 
-  onEditToDo({todo, title}) {
-    todo = {...todo, title: title};
-    this.store.dispatch(
-      EditToDo({ todo: todo })
-    );
+  onEditToDo({todo, title}) { 
+    this.toDosFacade.onEditToDo({todo, title});
   }
 
   ngOnChanges(): void {
@@ -76,5 +65,4 @@ export class DashboardComponent implements OnChanges{
         ];
       }, []);
   }
-
 }

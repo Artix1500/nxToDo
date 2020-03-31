@@ -8,7 +8,7 @@ import { UiModule } from '@myworkspace/todo-app/ui';
   imports: [
     CommonModule, 
     ShellRoutingModule, 
-    UiModule
+    UiModule,
   ],
   exports: [DashboardComponent],
   declarations: [DashboardComponent]

@@ -7,7 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { TodoAppShellModule } from '@myworkspace/todo-app/shell';
-import { TODOS_FEATURE_KEY, reducer } from '@myworkspace/todo-app/data-access';
+import { TODOS_FEATURE_KEY, reducer, ToDosFacade} from '@myworkspace/todo-app/data-access';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +28,9 @@ import { TODOS_FEATURE_KEY, reducer } from '@myworkspace/todo-app/data-access';
     StoreModule.forFeature(TODOS_FEATURE_KEY, reducer),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [],
+  providers: [
+    ToDosFacade
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
