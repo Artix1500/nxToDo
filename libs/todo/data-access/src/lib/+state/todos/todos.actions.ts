@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { TodosEntity } from '@myworkspace/todo-app/domain';
+import { TodosEntity } from '@myworkspace/todo/domain';
 import { Action } from '@ngrx/store'
 
 export const loadTodos = createAction('[Todos] Load Todos');

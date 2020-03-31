@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
-import { TodosEntity } from '@myworkspace/todo-app/domain';
+import { TodosEntity } from '@myworkspace/todo/domain';
 
 @Component({
   selector: 'myworkspace-todos',

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy } from '@angular/core';
-import { TodosEntity } from '@myworkspace/todo-app/domain';
-import { ToDosFacade } from '@myworkspace/todo-app/data-access';
+import { TodosEntity } from 'libs/todo/domain/src';
+import { ToDosFacade } from 'libs/todo/data-access/src';
 
 @Component({
   selector: 'dashboard',

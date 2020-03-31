@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AddToDo, RemoveToDo, DoneToDo, EditToDo } from './todos.actions';
-import { TodosEntity } from '@myworkspace/todo-app/domain';
+import { TodosEntity } from '@myworkspace/todo/domain';
 
 @Injectable()
 export class ToDosFacade { 

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { ShellRoutingModule } from './shell-routing.module';
-import { UiModule } from '@myworkspace/todo-app/ui';
+import { UiModule } from 'libs/todo/ui/src';
 
 @NgModule({
   imports: [
