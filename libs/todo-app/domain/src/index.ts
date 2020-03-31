@@ -1,1 +1,1 @@
-export * from './lib/todo-app-domain';
+export * from './lib/todos.models';

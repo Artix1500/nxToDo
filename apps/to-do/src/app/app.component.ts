@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { TodosEntity, AddToDo, RemoveToDo, DoneToDo, EditToDo } from '@myworkspace/todo-app/data-access';
+import { AddToDo, RemoveToDo, DoneToDo, EditToDo } from '@myworkspace/todo-app/data-access';
+import { TodosEntity } from '@myworkspace/todo-app/domain';
 import { Observable } from 'rxjs';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy} from '@angular/core';
-import { TodosEntity } from '@myworkspace/todo-app/data-access';
+import { TodosEntity } from '@myworkspace/todo-app/domain';
 
 @Component({
   selector: 'myworkspace-todos',

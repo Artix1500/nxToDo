@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { TodosEntity, RemoveToDo, DoneToDo, EditToDo } from '@myworkspace/todo-app/data-access';
-
+import { RemoveToDo, DoneToDo, EditToDo } from '@myworkspace/todo-app/data-access';
+import { TodosEntity } from '@myworkspace/todo-app/domain';
 
 @Component({
   selector: 'myworkspace-todo',
