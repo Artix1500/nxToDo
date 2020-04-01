@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './containers/dashboard/dashboard.component';
 import { ShellRoutingModule } from './shell-routing.module';
-import { UiModule } from 'libs/todo/ui/src';
+import { DashboardModule } from '@myworkspace/todo/dashboard-feature';
 
 @NgModule({
   imports: [
     CommonModule, 
     ShellRoutingModule, 
-    UiModule,
+    DashboardModule,
   ],
-  exports: [DashboardComponent],
+  exports: [ShellRoutingModule],
   declarations: [DashboardComponent]
 })
 export class TodoAppShellModule { }

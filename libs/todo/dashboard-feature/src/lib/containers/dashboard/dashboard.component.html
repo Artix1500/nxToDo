@@ -1,0 +1,20 @@
+<myworkspace-header></myworkspace-header>
+<myworkspace-todo-form (addToDo)="addToDo($event)"></myworkspace-todo-form>
+
+<myworkspace-todos 
+    (onDoneToDo)="onDoneToDo($event)"
+    (onRemoveToDo)="onRemoveToDo($event)"
+    (onEditToDo)="onEditToDo($event)"
+    [todos]="this.todosNotDone"
+    [done]="false"
+    [title]="'To do'"
+></myworkspace-todos>
+
+<myworkspace-todos 
+    (onDoneToDo)="onDoneToDo($event)"
+    (onRemoveToDo)="onRemoveToDo($event)"
+    (onEditToDo)="onEditToDo($event)"
+    [todos]="this.todosDone"
+    [done]="true"
+    [title]="'Done'"
+></myworkspace-todos>

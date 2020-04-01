@@ -29,6 +29,9 @@
     },
     "todo-app-shell": {
       "tags": []
+    },
+    "todo-dashboard-feature": {
+      "tags": []
     }
   }
 }

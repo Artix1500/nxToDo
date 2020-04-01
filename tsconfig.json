@@ -16,12 +16,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@myworkspace/todo/data-access": [
-        "libs/todo/data-access/src/index.ts"
-      ],
+      "@myworkspace/todo/data-access": ["libs/todo/data-access/src/index.ts"],
       "@myworkspace/todo/ui": ["libs/todo/ui/src/index.ts"],
       "@myworkspace/todo/domain": ["libs/todo/domain/src/index.ts"],
-      "@myworkspace/todo/shell": ["libs/todo/shell/src/index.ts"]
+      "@myworkspace/todo/shell": ["libs/todo/shell/src/index.ts"],
+      "@myworkspace/todo/dashboard-feature": [
+        "libs/todo/dashboard-feature/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

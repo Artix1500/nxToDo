@@ -9,12 +9,14 @@ import { environment } from '../environments/environment';
 import { TodoAppShellModule } from 'libs/todo/shell/src';
 import { TODOS_FEATURE_KEY, reducer, ToDosFacade} from 'libs/todo/data-access/src';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     TodoAppShellModule,
+    AppRoutingModule,
     StoreModule.forRoot(
       {},
       {

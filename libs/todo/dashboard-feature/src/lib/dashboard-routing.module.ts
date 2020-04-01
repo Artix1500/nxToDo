@@ -1,18 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './containers/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    children: [
-      {
-        path: 'app',
-        loadChildren: () =>
-          import('@myworkspace/todo/dashboard-feature').then(m => m.DashboardModule)
-      }
-    ]
   }
 ];
 
@@ -20,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ShellRoutingModule {}
+export class DashboardRoutingModule { }
