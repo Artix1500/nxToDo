@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { AddToDo, RemoveToDo, DoneToDo, EditToDo } from './todos.actions';
+import { AddToDo, RemoveToDo, DoneToDo, EditToDo, loadTodos } from './todos.actions';
 import { TodosEntity } from '@myworkspace/todo/domain';
 
 @Injectable()
@@ -34,5 +34,10 @@ export class ToDosFacade {
 	
 	getToDos(){
 		return this.store.select('todos');
-	}
+  }
+  
+  loadToDos(){
+    console.log("LOAD !")
+    this.store.dispatch(loadTodos());
+  }
 }

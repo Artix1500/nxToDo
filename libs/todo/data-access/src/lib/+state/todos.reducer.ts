@@ -24,18 +24,19 @@ export const todosAdapter: EntityAdapter<TodosEntity> = createEntityAdapter<
   TodosEntity
 >();
 
+
 export const initialState: State = todosAdapter.getInitialState({
   // set initial required properties
-  todos: JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)),
+  todos: {},
   loaded: false
 });
 
 const todosReducer = createReducer(
   initialState,
   on(TodosActions.loadTodos, state => ({
-    ...state,
-    loaded: false,
-    error: null
+      ...state,
+      loaded: false,
+      error: null
   })),
   on(TodosActions.loadTodosSuccess, (state, { todos }) =>
     todosAdapter.setAll(todos, { ...state, loaded: true })

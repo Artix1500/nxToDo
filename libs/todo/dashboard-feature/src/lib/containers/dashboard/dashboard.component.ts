@@ -20,6 +20,7 @@ export class DashboardComponent implements OnChanges, OnInit{
       this.todos = data.todos;
       this.sortToDos();
     });
+    this.toDosFacade.loadToDos();
   }
 
   addToDo(title) { 

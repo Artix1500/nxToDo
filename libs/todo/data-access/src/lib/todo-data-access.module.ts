@@ -5,6 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import * as fromTodos from './+state/todos.reducer';
 import { TodosEffects } from './+state/todos.effects';
 import { ToDosFacade } from './+state/todos.facade';
+import { TodosDataService } from './services/todos-data.service';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { ToDosFacade } from './+state/todos.facade';
     EffectsModule.forFeature([TodosEffects])
   ],
   providers: [
-    ToDosFacade
+    ToDosFacade,
+    TodosDataService
   ]
 })
 export class TodoDataAccessModule {}
