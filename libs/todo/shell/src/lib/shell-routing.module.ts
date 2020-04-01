@@ -8,7 +8,7 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
-        path: 'app',
+        path: '',
         loadChildren: () =>
           import('@myworkspace/todo/dashboard-feature').then(m => m.DashboardModule)
       }
