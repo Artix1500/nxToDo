@@ -2,7 +2,6 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import * as TodosActions from './todos.actions';
 import { TodosEntity } from '@myworkspace/todo/domain';
-import { v4 as uuidv4 } from 'uuid';
 
 export const TODOS_FEATURE_KEY = 'todos';
 
@@ -24,7 +23,6 @@ export const todosAdapter: EntityAdapter<TodosEntity> = createEntityAdapter<
   TodosEntity
 >();
 
-
 export const initialState: State = todosAdapter.getInitialState({
   // set initial required properties
   todos: {},
@@ -40,61 +38,26 @@ const todosReducer = createReducer(
   })),
   on(TodosActions.loadTodosSuccess, (state, { todos }) => ({ ...state, todos })),
   on(TodosActions.loadTodosFailure, (state, { error }) => ({ ...state, error })),
-  on(TodosActions.AddToDo, (state, { todoTitle }) => {
-    console.log()
-    const id: string = uuidv4();
-    const todo: TodosEntity = {
-      id: id,
-      title: todoTitle,
-      done: false,
-    };
-    
-    const newTodos: {[id: string]: TodosEntity} = {...state.todos};
-    newTodos[id] = todo;
-
-    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
-
-    return {
-      ...state, 
-      todos: newTodos
-    };
-  }),
-  on(TodosActions.EditToDo, (state, { todo }) => { 
-    const newTodos: {[id: string]: TodosEntity} = {...state.todos};
-    newTodos[todo.id] = todo;
-
-    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
-
-    return {
-      ...state, 
-      todos: newTodos
-    };
-  }),
-  on(TodosActions.RemoveToDo, (state, { id }) => {
-    const newTodos: {[id: string]: TodosEntity} = {...state.todos};
-    delete newTodos[id];
-
-    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
-
-    return {
-      ...state, 
-      todos: newTodos
-    };
-  }),
-  on(TodosActions.DoneToDo, (state, { id }) => {
-    const newTodos: {[id: string]: TodosEntity} = {...state.todos};
-    newTodos[id] = {
-      ...newTodos[id], 
-      done: !newTodos[id].done
-    };
-
-    localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
-
-    return {
-      ...state, 
-      todos: newTodos
-    };
-  }),
+  on(TodosActions.AddToDo, (state, { todoTitle }) => ({
+    ...state,
+    loaded: false,
+    error: null
+  })),
+  on(TodosActions.EditToDo, (state, { todo }) => ({ 
+    ...state,
+    loaded: false,
+    error: null
+  })),
+    on(TodosActions.RemoveToDo, (state, { id }) => ({
+    ...state,
+    loaded: false,
+    error: null
+  })),
+    on(TodosActions.DoneToDo, (state, { id }) => ({
+    ...state,
+    loaded: false,
+    error: null
+  }))
 );
 
 export function reducer(state: State | undefined, action: Action) {
