@@ -32,6 +32,9 @@
     },
     "todo-dashboard-feature": {
       "tags": []
+    },
+    "todo-data-access": {
+      "tags": ["scope:todos", "type:data-access"]
     }
   }
 }

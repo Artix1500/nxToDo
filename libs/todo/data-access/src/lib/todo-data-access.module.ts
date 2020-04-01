@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import * as fromTodos from './+state/todos/todos.reducer';
-import { TodosEffects } from './+state/todos/todos.effects';
-import { ToDosFacade } from './+state/todos/todos.facade';
+import * as fromTodos from './+state/todos.reducer';
+import { TodosEffects } from './+state/todos.effects';
+import { ToDosFacade } from './+state/todos.facade';
 
 @NgModule({
   imports: [
@@ -16,4 +16,5 @@ import { ToDosFacade } from './+state/todos/todos.facade';
     ToDosFacade
   ]
 })
-export class TodosModule {}
+export class TodoDataAccessModule {}
+
