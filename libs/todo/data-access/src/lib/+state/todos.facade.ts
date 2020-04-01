@@ -8,6 +8,7 @@ export class ToDosFacade {
 	constructor(private store: Store<{ todos: {[id: string]: TodosEntity} }>) {}
  
   addToDo(title) {
+    console.log("FAS ADD CALL DISP")
     this.store.dispatch(
       AddToDo({ todoTitle: title })
     )

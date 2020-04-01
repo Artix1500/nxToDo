@@ -6,7 +6,7 @@ export const loadTodos = createAction('[Todos] Load Todos');
 
 export const loadTodosSuccess = createAction(
   '[Todos] Load Todos Success',
-  props<{ todos: TodosEntity[] }>()
+  props<{ todos: {[id: string]: TodosEntity} }>()
 );
 
 export const loadTodosFailure = createAction(

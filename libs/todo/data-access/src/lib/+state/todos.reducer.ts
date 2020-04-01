@@ -38,11 +38,10 @@ const todosReducer = createReducer(
       loaded: false,
       error: null
   })),
-  on(TodosActions.loadTodosSuccess, (state, { todos }) =>
-    todosAdapter.setAll(todos, { ...state, loaded: true })
-  ),
+  on(TodosActions.loadTodosSuccess, (state, { todos }) => ({ ...state, todos })),
   on(TodosActions.loadTodosFailure, (state, { error }) => ({ ...state, error })),
   on(TodosActions.AddToDo, (state, { todoTitle }) => {
+    console.log()
     const id: string = uuidv4();
     const todo: TodosEntity = {
       id: id,

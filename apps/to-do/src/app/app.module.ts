@@ -28,12 +28,10 @@ import { AppRoutingModule } from './app-routing.module';
       }
     ),
     EffectsModule.forRoot([]),
-    StoreModule.forFeature(TODOS_FEATURE_KEY, reducer),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     BrowserAnimationsModule
   ],
   providers: [
-    ToDosFacade
   ],
   bootstrap: [AppComponent]
 })
