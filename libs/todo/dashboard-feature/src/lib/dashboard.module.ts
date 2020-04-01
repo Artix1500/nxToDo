@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { UiModule } from '@myworkspace/todo/ui';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './containers/dashboard/dashboard.component';
-
+import { TodoDataAccessModule } from '@myworkspace/todo/data-access'
+import { ToDosFacade} from '@myworkspace/todo/data-access';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -11,6 +12,10 @@ import { DashboardComponent } from './containers/dashboard/dashboard.component';
     CommonModule,
     DashboardRoutingModule,
     UiModule,
+    TodoDataAccessModule,
+  ],
+  providers: [
+    ToDosFacade
   ],
   exports: [DashboardRoutingModule],
 })
