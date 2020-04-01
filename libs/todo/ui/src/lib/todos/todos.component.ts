@@ -8,13 +8,25 @@ import { TodosEntity } from '@myworkspace/todo/domain';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodosComponent {
-  @Input() todos: TodosEntity[];
-  @Input() title: string;
-  @Input() done: boolean;
+  @Input() 
+  todos: TodosEntity[];
+  
+  @Input() 
+  title: string;
+  
+  @Input() 
+  done: boolean;
+  
 
-  @Output() onRemoveToDo = new EventEmitter<string>();
-  @Output() onDoneToDo = new EventEmitter<string>();
-  @Output() onEditToDo = new EventEmitter<{todo: TodosEntity, title: string}>();
+  @Output() 
+  onRemoveToDo = new EventEmitter<string>();
+  
+  @Output() 
+  onDoneToDo = new EventEmitter<string>();
+  
+  @Output() 
+  onEditToDo = new EventEmitter<{todo: TodosEntity, title: string}>();
+  
 
   handleOnRemoveToDo = (id) => {
     this.onRemoveToDo.emit(id)

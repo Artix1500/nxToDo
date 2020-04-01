@@ -8,12 +8,20 @@ import { TodosEntity } from '@myworkspace/todo/domain';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoComponent {
-  @Input() todo: TodosEntity;
+  @Input() 
+  todo: TodosEntity;
+  
   edit = false;
 
-  @Output() onRemoveToDo = new EventEmitter<string>();
-  @Output() onDoneToDo = new EventEmitter<string>();
-  @Output() onEditToDo = new EventEmitter<{todo: TodosEntity, title: string}>();
+  @Output()
+  onRemoveToDo = new EventEmitter<string>();
+
+  @Output()
+  onDoneToDo = new EventEmitter<string>();
+
+  @Output()
+  onEditToDo = new EventEmitter<{todo: TodosEntity, title: string}>();
+
 
   handleEdit(title) {
     this.onEditToDo.emit({todo: this.todo, title})

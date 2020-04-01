@@ -8,5 +8,6 @@ import { Component, ChangeDetectionStrategy, Output, EventEmitter} from '@angula
 })
 
 export class TodoFormComponent{
-  @Output() addToDo = new EventEmitter<string>();
+  @Output() 
+  addToDo = new EventEmitter<string>();
 }
