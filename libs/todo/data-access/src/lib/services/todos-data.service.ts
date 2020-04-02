@@ -3,60 +3,57 @@ import { Injectable } from '@angular/core';
 import { TodosDict, Todos } from '@myworkspace/todo/domain'; 
 import { v4 as uuidv4 } from 'uuid'
 import { delay, map } from 'rxjs/operators';
-
+import { ToDosFacade } from '../+state/todos.facade'
 const LOCALSTORAGEKEY = '__app_todo_storage__';
 
 @Injectable()
 export class TodosDataService {
- 
+  constructor(private toDosFacade: ToDosFacade) { }
 
-  getTodosObs(): Observable<{todos: TodosDict}> {
+  localStore$: Observable<{todos: TodosDict}>  = of({
+    todos: JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)),
+  }).pipe(delay(100))
+
+  getTodos$(): Observable<{todos: TodosDict}> {
     return of({
       todos: JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)),
-    }).pipe(delay(2000))
+    }).pipe(delay(300))
   }
 
-  getTodos(): {todos: TodosDict} {
-    return {
-      todos: JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)),
-    }
-  }
-
-  addToDo(todoTitle: string) : {todos: TodosDict}{
+  addToDo(todoTitle: string) : void{
     const id: string = uuidv4();
     const todo: Todos = {
       id: id,
       title: todoTitle,
       done: false,
     };
-      
-    const newTodos: TodosDict = { ...this.getTodos().todos };
+    const newTodos: TodosDict = { ...JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) };
     newTodos[id] = todo;
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
-    return this.getTodos() 
+    this.toDosFacade.loadToDos();
   }
 
-  editToDo(todo: Todos) : {todos: TodosDict}{
-    const newTodos: TodosDict = { ...this.getTodos().todos };
+  editToDo(todo: Todos) : void{
+    const newTodos: TodosDict = { ...JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) };
     newTodos[todo.id] = todo;
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
-    return this.getTodos() 
+    this.toDosFacade.loadToDos();
   }
 
-  removeToDo(id: string) : {todos: TodosDict}{
-    const newTodos: TodosDict = { ...this.getTodos().todos };
+  removeToDo(id: string) : void{
+    const newTodos: TodosDict = { ...JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) };
     delete newTodos[id];
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
-    return this.getTodos() 
+    this.toDosFacade.loadToDos();
   }
   
-  doneToDo(id: string) : {todos: TodosDict}{
-    const newTodos: TodosDict = { ...this.getTodos().todos };
+  doneToDo(id: string) : void{
+    const newTodos: TodosDict = { ...JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) };
     newTodos[id] = {
       ...newTodos[id], 
       done: !newTodos[id].done
     };
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
-    return this.getTodos() 
+    this.toDosFacade.loadToDos();
   }
 }

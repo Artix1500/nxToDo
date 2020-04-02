@@ -15,7 +15,7 @@ export class TodosEffects {
     TodosActions.loadTodos,
     {
       run: (action) => {
-        return this.todosDataService.getTodosObs().pipe(map(
+        return this.todosDataService.getTodos$().pipe(map(
             data => {
               return TodosActions.loadTodosSuccess(
                 data
@@ -36,7 +36,7 @@ export class TodosEffects {
     TodosActions.AddToDo,
     {
       run: (action: {type: string, todoTitle: string}) => {
-        return  TodosActions.loadTodosSuccess(  this.todosDataService.addToDo(action.todoTitle) );
+          this.todosDataService.addToDo(action.todoTitle);
       },
       onError: (action, error) => {
         console.error('Error', error);
@@ -50,7 +50,7 @@ export class TodosEffects {
     TodosActions.EditToDo,
     {
       run: (action: {type: string, todo: Todos, TodosDict}) => {
-        return  TodosActions.loadTodosSuccess(  this.todosDataService.editToDo(action.todo) );
+        this.todosDataService.editToDo(action.todo);
       },
       onError: (action, error) => {
         console.error('Error', error);
@@ -64,7 +64,7 @@ export class TodosEffects {
     TodosActions.RemoveToDo,
     {
       run: (action: {type: string, id: string}) => {
-        return  TodosActions.loadTodosSuccess(  this.todosDataService.removeToDo(action.id) );
+        this.todosDataService.removeToDo(action.id);
       },
       onError: (action, error) => {
         console.error('Error', error);
@@ -78,7 +78,7 @@ export class TodosEffects {
     TodosActions.DoneToDo,
     {
       run: (action: {type: string, id: string}) => {
-        return  TodosActions.loadTodosSuccess(  this.todosDataService.doneToDo(action.id) );
+        this.todosDataService.doneToDo(action.id);
       },
       onError: (action, error) => {
         console.error('Error', error);
