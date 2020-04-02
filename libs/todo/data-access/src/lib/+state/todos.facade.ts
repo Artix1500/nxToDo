@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { TodosActions } from './todos.actions';
 import { Todos , TodosDict} from '@myworkspace/todo/domain';
-
+import { getAllTodos } from './todos.selectors'
 @Injectable()
 export class ToDosFacade { 
 	constructor(private store: Store<{ todos: TodosDict }>) {}

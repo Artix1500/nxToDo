@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Todos } from '@myworkspace/todo/domain';
 import { ToDosFacade } from '@myworkspace/todo/data-access';
 
@@ -13,10 +13,11 @@ export class DashboardComponent implements OnChanges, OnInit{
   todosDone: Todos[];
   todosNotDone: Todos[];
 
-  constructor(private toDosFacade: ToDosFacade) { }
+  constructor(private toDosFacade: ToDosFacade, private changeDetector : ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.toDosFacade.getToDos().subscribe(data => {
+      this.changeDetector.markForCheck();
       this.todos = data.todos;
       this.sortToDos();
     });

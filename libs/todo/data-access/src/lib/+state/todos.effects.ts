@@ -3,8 +3,9 @@ import { DataPersistence } from '@nrwl/angular';
 import * as fromTodos from './todos.reducer';
 import { TodosActions } from './todos.actions';
 import { TodosDataService } from '../services/todos-data.service';
-import { TodosEntity } from '@myworkspace/todo/domain';
+import { Todos } from '@myworkspace/todo/domain';
 import { Effect } from '@ngrx/effects';
+import { map, pluck } from 'rxjs/operators';
 
 @Injectable()
 export class TodosEffects {
@@ -14,7 +15,14 @@ export class TodosEffects {
     TodosActions.loadTodos,
     {
       run: (action) => {
-        return  TodosActions.loadTodosSuccess(  this.todosDataService.getTodos() );
+        return this.todosDataService.getTodosObs().pipe(map(
+            data => {
+              return TodosActions.loadTodosSuccess(
+                data
+              )
+            }
+          )
+        );
       },
       onError: (action, error) => {
         console.error('Error', error);
@@ -41,7 +49,7 @@ export class TodosEffects {
   EditToDo$ = this.dp.fetch(
     TodosActions.EditToDo,
     {
-      run: (action: {type: string, todo: TodosEntity}) => {
+      run: (action: {type: string, todo: Todos, TodosDict}) => {
         return  TodosActions.loadTodosSuccess(  this.todosDataService.editToDo(action.todo) );
       },
       onError: (action, error) => {
