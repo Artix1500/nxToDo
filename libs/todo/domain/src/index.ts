@@ -1,1 +1,1 @@
-export * from './lib/interfaces/todos.models';
+export * from './lib/interfaces/todos.interface';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DataPersistence } from '@nrwl/angular';
 import * as fromTodos from './todos.reducer';
-import * as TodosActions from './todos.actions';
+import { TodosActions } from './todos.actions';
 import { TodosDataService } from '../services/todos-data.service';
 import { TodosEntity } from '@myworkspace/todo/domain';
 import { Effect } from '@ngrx/effects';

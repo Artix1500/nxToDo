@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, ChangeDetectionStrategy } from '@angular/core';
-import { TodosEntity } from 'libs/todo/domain/src';
+import { Todos } from '@myworkspace/todo/domain';
 import { ToDosFacade } from '@myworkspace/todo/data-access';
 
 @Component({
@@ -10,8 +10,8 @@ import { ToDosFacade } from '@myworkspace/todo/data-access';
 })
 export class DashboardComponent implements OnChanges, OnInit{
   todos = {}
-  todosDone: TodosEntity[];
-  todosNotDone: TodosEntity[];
+  todosDone: Todos[];
+  todosNotDone: Todos[];
 
   constructor(private toDosFacade: ToDosFacade) { }
 

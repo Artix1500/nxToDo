@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy} from '@angular/core';
-import { TodosEntity } from '@myworkspace/todo/domain';
+import { Todos } from '@myworkspace/todo/domain';
 
 @Component({
   selector: 'myworkspace-todos',
@@ -9,7 +9,7 @@ import { TodosEntity } from '@myworkspace/todo/domain';
 })
 export class TodosComponent {
   @Input() 
-  todos: TodosEntity[];
+  todos: Todos[];
   
   @Input() 
   title: string;
@@ -25,7 +25,7 @@ export class TodosComponent {
   onDoneToDo = new EventEmitter<string>();
   
   @Output() 
-  onEditToDo = new EventEmitter<{todo: TodosEntity, title: string}>();
+  onEditToDo = new EventEmitter<{todo: Todos, title: string}>();
   
 
   handleOnRemoveToDo = (id) => {

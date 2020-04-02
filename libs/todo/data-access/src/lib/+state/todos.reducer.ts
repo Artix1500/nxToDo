@@ -1,15 +1,12 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import * as TodosActions from './todos.actions';
-import { TodosEntity } from '@myworkspace/todo/domain';
+import { TodosActions } from './todos.actions';
+import { Todos, TodosDict } from '@myworkspace/todo/domain';
 
 export const TODOS_FEATURE_KEY = 'todos';
 
-// the key for the local storage.
-const LOCALSTORAGEKEY = '__app_todo_storage__';
-
-export interface State extends EntityState<TodosEntity> {
-  todos: {[id: string]: TodosEntity};
+export interface State extends EntityState<Todos> {
+  todos: TodosDict;
   selectedId?: string | number; // which Todos record has been selected
   loaded: boolean; // has the Todos list been loaded
   error?: string | null; // last none error (if any)
@@ -19,8 +16,8 @@ export interface TodosPartialState {
   readonly [TODOS_FEATURE_KEY]: State;
 }
 
-export const todosAdapter: EntityAdapter<TodosEntity> = createEntityAdapter<
-  TodosEntity
+export const todosAdapter: EntityAdapter<Todos> = createEntityAdapter<
+  Todos
 >();
 
 export const initialState: State = todosAdapter.getInitialState({
