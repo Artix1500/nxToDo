@@ -6,21 +6,16 @@ import { delay, map } from 'rxjs/operators';
 import { ToDosFacade } from '../+state/todos.facade'
 const LOCALSTORAGEKEY = '__app_todo_storage__';
 
+
 @Injectable()
 export class TodosDataService {
-  constructor(private toDosFacade: ToDosFacade) { }
-
-  localStore$: Observable<{todos: TodosDict}>  = of({
-    todos: JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)),
-  }).pipe(delay(100))
-
   getTodos$(): Observable<{todos: TodosDict}> {
     return of({
       todos: JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)),
     }).pipe(delay(300))
   }
 
-  addToDo(todoTitle: string) : void{
+  addToDo(todoTitle: string) : Observable<{todos: TodosDict}>{
     const id: string = uuidv4();
     const todo: Todos = {
       id: id,
@@ -30,30 +25,30 @@ export class TodosDataService {
     const newTodos: TodosDict = { ...JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) };
     newTodos[id] = todo;
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
-    this.toDosFacade.loadToDos();
+    return this.getTodos$();
   }
 
-  editToDo(todo: Todos) : void{
+  editToDo(todo: Todos) : Observable<{todos: TodosDict}>{
     const newTodos: TodosDict = { ...JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) };
     newTodos[todo.id] = todo;
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
-    this.toDosFacade.loadToDos();
+    return this.getTodos$();
   }
 
-  removeToDo(id: string) : void{
+  removeToDo(id: string) : Observable<{todos: TodosDict}>{
     const newTodos: TodosDict = { ...JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) };
     delete newTodos[id];
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
-    this.toDosFacade.loadToDos();
+    return this.getTodos$();
   }
   
-  doneToDo(id: string) : void{
+  doneToDo(id: string) : Observable<{todos: TodosDict}>{
     const newTodos: TodosDict = { ...JSON.parse(localStorage.getItem(LOCALSTORAGEKEY)) };
     newTodos[id] = {
       ...newTodos[id], 
       done: !newTodos[id].done
     };
     localStorage.setItem(LOCALSTORAGEKEY, JSON.stringify(newTodos));
-    this.toDosFacade.loadToDos();
+    return this.getTodos$();
   }
 }

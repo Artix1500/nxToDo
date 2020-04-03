@@ -1,94 +1,75 @@
 import { Injectable } from '@angular/core';
 import { DataPersistence } from '@nrwl/angular';
 import * as fromTodos from './todos.reducer';
-import { TodosActions } from './todos.actions';
+import * as TodosActions from './todos.actions';
 import { TodosDataService } from '../services/todos-data.service';
-import { Todos } from '@myworkspace/todo/domain';
-import { Effect } from '@ngrx/effects';
-import { map, pluck } from 'rxjs/operators';
+import {  Actions, createEffect, ofType } from '@ngrx/effects';
+import { map, exhaustMap, tap } from 'rxjs/operators';
 
 @Injectable()
 export class TodosEffects {
-
-  @Effect()
-  loadTodos$ = this.dp.fetch(
-    TodosActions.loadTodos,
-    {
-      run: (action) => {
-        return this.todosDataService.getTodos$().pipe(map(
-            data => {
-              return TodosActions.loadTodosSuccess(
-                data
-              )
-            }
+  loadTodos$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TodosActions.loadTodos),
+        exhaustMap(action => this.todosDataService.getTodos$().pipe(
+          map(
+            response => TodosActions.loadTodosSuccess(response)
           )
-        );
-      },
-      onError: (action, error) => {
-        console.error('Error', error);
-        return TodosActions.loadTodosFailure({ error });
-      }
-    }
+        )
+      )
+    )
   );
 
-  @Effect()
-  addToDo$ = this.dp.fetch(
-    TodosActions.AddToDo,
-    {
-      run: (action: {type: string, todoTitle: string}) => {
-          this.todosDataService.addToDo(action.todoTitle);
-      },
-      onError: (action, error) => {
-        console.error('Error', error);
-        return TodosActions.loadTodosFailure({ error });
-      }
-    }
+  addToDo$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TodosActions.AddToDo),
+        exhaustMap(action => this.todosDataService.addToDo(action.todoTitle).pipe(
+          map(
+            data => TodosActions.loadTodosSuccess(data)
+          )
+        )
+      )
+    )
   );
 
-  @Effect()
-  EditToDo$ = this.dp.fetch(
-    TodosActions.EditToDo,
-    {
-      run: (action: {type: string, todo: Todos, TodosDict}) => {
-        this.todosDataService.editToDo(action.todo);
-      },
-      onError: (action, error) => {
-        console.error('Error', error);
-        return TodosActions.loadTodosFailure({ error });
-      }
-    }
+  EditToDo$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TodosActions.EditToDo),
+        exhaustMap(action => this.todosDataService.editToDo(action.todo).pipe(
+          map(
+            data => TodosActions.loadTodosSuccess(data)
+          )
+        )
+      )
+    )
   );
 
-  @Effect()
-  RemoveToDo$ = this.dp.fetch(
-    TodosActions.RemoveToDo,
-    {
-      run: (action: {type: string, id: string}) => {
-        this.todosDataService.removeToDo(action.id);
-      },
-      onError: (action, error) => {
-        console.error('Error', error);
-        return TodosActions.loadTodosFailure({ error });
-      }
-    }
+  RemoveToDo$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TodosActions.RemoveToDo),
+        exhaustMap(action => this.todosDataService.removeToDo(action.id).pipe(
+          map(
+            data => TodosActions.loadTodosSuccess(data)
+          )
+        )
+      )
+    )
   );
 
-  @Effect()
-  DoneToDo$ = this.dp.fetch(
-    TodosActions.DoneToDo,
-    {
-      run: (action: {type: string, id: string}) => {
-        this.todosDataService.doneToDo(action.id);
-      },
-      onError: (action, error) => {
-        console.error('Error', error);
-        return TodosActions.loadTodosFailure({ error });
-      }
-    }
+  DoneToDo$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TodosActions.DoneToDo),
+        exhaustMap(action => this.todosDataService.doneToDo(action.id).pipe(
+          map(
+            data => TodosActions.loadTodosSuccess(data)
+          )
+        )
+      )
+    )
   );
-  
+
   constructor(
-    private dp: DataPersistence<fromTodos.TodosPartialState>,
+    private actions$: Actions,
     private todosDataService: TodosDataService
-    ) {}
+  ) { }
 }

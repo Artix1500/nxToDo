@@ -2,7 +2,6 @@ import { createAction, props } from '@ngrx/store';
 import { Todos, TodosDict } from '@myworkspace/todo/domain';
 
 
-export namespace TodosActions {
   export const loadTodos = createAction('[Todos] Load Todos');
 
   export const loadTodosSuccess = createAction(
@@ -27,11 +26,10 @@ export namespace TodosActions {
 
   export const RemoveToDo = createAction(
     '[Todos] RemoveToDo',
-    props<{ id: number }>()
+    props<{ id: string }>()
   );
 
   export const DoneToDo = createAction(
     '[Todos] DoneToDo',
-    props<{ id: number }>()
+    props<{ id: string }>()
   );
-}
