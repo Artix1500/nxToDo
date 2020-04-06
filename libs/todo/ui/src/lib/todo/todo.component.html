@@ -8,7 +8,7 @@
         </mat-checkbox>
     </div>
     <div class="todo__buttons" *ngIf="!edit">
-        <button mat-raised-button (click)="onRemoveToDo.emit(todo.id)">Remove</button>
+        <button mat-raised-button (click)="removeToDo(todo)">Remove</button>
         <button mat-raised-button (click)="startEdit()">Edit</button>
     </div>
 

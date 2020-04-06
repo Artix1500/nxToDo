@@ -12,6 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { MatListModule } from '@angular/material/list';
     MatDividerModule,
     MatListModule,
     ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [FormBuilder],
   declarations: [TodosComponent, TodoComponent, HeaderComponent, TodoFormComponent],
