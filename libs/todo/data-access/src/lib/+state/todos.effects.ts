@@ -4,7 +4,7 @@ import * as fromTodos from './todos.reducer';
 import * as TodosActions from './todos.actions';
 import { TodosDataService } from '../services/todos-data.service';
 import {  Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, exhaustMap, tap } from 'rxjs/operators';
+import { map, exhaustMap, tap, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class TodosEffects {
@@ -15,7 +15,7 @@ export class TodosEffects {
           map(
             response => TodosActions.loadTodosSuccess(response)
           )
-        )
+        ), 
       )
     )
   );

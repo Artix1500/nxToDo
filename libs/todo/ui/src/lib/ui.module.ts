@@ -4,6 +4,8 @@ import { TodosComponent } from './todos/todos.component';
 import { TodoComponent } from './todo/todo.component';
 import { HeaderComponent } from './header/header.component';
 import { TodoFormComponent } from './todo-form/todo-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -19,7 +21,9 @@ import { MatListModule } from '@angular/material/list';
     MatCheckboxModule,
     MatDividerModule,
     MatListModule,
+    ReactiveFormsModule,
   ],
+  providers: [FormBuilder],
   declarations: [TodosComponent, TodoComponent, HeaderComponent, TodoFormComponent],
   exports: [TodosComponent, TodoComponent, HeaderComponent, TodoFormComponent]
 })

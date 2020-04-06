@@ -1,10 +1,10 @@
 <div class="container">
-    <h2>Add new todo</h2>
-    <div>
+    <h2>Add new todo:</h2>
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
       <mat-form-field class="example-full-width">
         <mat-label>Add todo</mat-label>
-        <input matInput placeholder="Buy milk" #name (keyup.enter)="addToDo.emit(name.value)">
+        <input autofocus matInput placeholder="Buy milk" formControlName="title">
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="addToDo.emit(name.value)">Add todo</button>
-    </div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!todoForm.valid">Submit</button>
+    </form>
 </div>
